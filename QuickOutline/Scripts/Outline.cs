@@ -48,6 +48,22 @@ public class Outline : MonoBehaviour {
     }
   }
 
+  public int MaskRenderQueue {
+    get { return maskRenderQueue; }
+    set {
+      maskRenderQueue = value;
+      needsUpdate = true;
+    }
+  }
+
+  public int FillRenderQueue {
+    get { return fillRenderQueue; }
+    set {
+      fillRenderQueue = value;
+      needsUpdate = true;
+    }
+  }
+
   [Serializable]
   private class ListVector3 {
     public List<Vector3> data;
@@ -61,6 +77,12 @@ public class Outline : MonoBehaviour {
 
   [SerializeField, Range(0f, 10f)]
   private float outlineWidth = 2f;
+
+  [SerializeField, Tooltip("Transparent+100, by default")]
+  private int maskRenderQueue = 3100;// Transparent + 100, by default
+
+  [SerializeField, Tooltip("Transparent+110, by default")]
+  private int fillRenderQueue = 3110;// Transparent + 110, by default
 
   [Header("Optional")]
 
@@ -241,6 +263,8 @@ public class Outline : MonoBehaviour {
 
     // Apply properties according to mode
     outlineFillMaterial.SetColor("_OutlineColor", outlineColor);
+    outlineMaskMaterial.renderQueue = maskRenderQueue;
+    outlineFillMaterial.renderQueue = fillRenderQueue;
 
     switch (outlineMode) {
       case Mode.OutlineAll:
