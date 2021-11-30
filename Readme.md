@@ -1,3 +1,7 @@
+Forked the awesome tool from [chrisnolet/QuickOutline](https://github.com/chrisnolet/QuickOutline), and made changes below,
+---------------------------------------------------------------------------------------------------------------------------
+Expose the render queue for Outline component on the inspector. You can therefore prevent certain objects from causing rendering outline by setting the render queue larger than the render queues of the Outline component.
+
 Quick Outline
 =============
 
